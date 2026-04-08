@@ -1,55 +1,40 @@
-import 'expo-router/entry';
-import { ExpoConfig, ConfigContext } from 'expo/config';
+import type { ExpoConfig } from 'expo';
 
-export default ({ config }: ConfigContext): ExpoConfig => {
-  return {
-    ...config,
-    name: '在线预约',
-    slug: 'booking-frontend',
-    version: '1.0.0',
-    orientation: 'portrait',
-    icon: './assets/images/icon.png',
-    scheme: 'booking-app',
-    userInterfaceStyle: 'automatic',
-    newArchEnabled: true,
-    ios: {
-      supportsTablet: true,
-      bundleIdentifier: 'com.booking.app'
+const config: ExpoConfig = {
+  name: '预约挂号系统',
+  slug: 'booking-app',
+  version: '1.0.0',
+  orientation: 'portrait',
+  icon: './assets/icon.png',
+  userInterfaceStyle: 'automatic',
+  scheme: 'bookingapp',
+  splash: {
+    image: './assets/splash-icon.png',
+    resizeMode: 'contain',
+    backgroundColor: '#ffffff',
+  },
+  ios: {
+    supportsTablet: true,
+    bundleIdentifier: 'com.booking.app',
+  },
+  android: {
+    adaptiveIcon: {
+      foregroundImage: './assets/adaptive-icon.png',
+      backgroundColor: '#ffffff',
     },
-    android: {
-      adaptiveIcon: {
-        foregroundImage: './assets/images/adaptive-icon.png',
-        backgroundColor: '#ffffff'
-      },
-      package: 'com.booking.app'
+    package: 'com.booking.app',
+  },
+  web: {
+    bundler: 'metro',
+    output: 'static',
+    favicon: './assets/favicon.png',
+  },
+  plugins: ['expo-web-browser'],
+  extra: {
+    eas: {
+      projectId: 'your-project-id',
     },
-    web: {
-      bundler: 'metro',
-      output: 'single',
-      favicon: './assets/images/favicon.png'
-    },
-    plugins: [
-      'expo-router',
-      [
-        'expo-splash-screen',
-        {
-          image: './assets/images/splash-icon.png',
-          imageWidth: 200,
-          resizeMode: 'contain',
-          backgroundColor: '#ffffff'
-        }
-      ],
-      [
-        'expo-image-picker',
-        {
-          photosPermission: '允许应用访问您的照片以更换头像'
-        }
-      ]
-    ],
-    extra: {
-      eas: {
-        projectId: 'booking-app'
-      }
-    }
-  };
+  },
 };
+
+export default config;
