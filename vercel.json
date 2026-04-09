@@ -2,8 +2,5 @@
   "buildCommand": "npx expo export --platform web",
   "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps",
-  "framework": null,
-  "env": {
-    "ENABLE_TYPE_STRIPPING": "false"
-  }
+  "framework": null
 }
