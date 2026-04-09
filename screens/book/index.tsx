@@ -74,7 +74,7 @@ export default function BookScreen() {
       });
       
       Alert.alert('预约成功', `预约号：${result.id}`, [
-        { text: '确定', onPress: () => router.replace('/') }
+        { text: '确定', onPress: () => router.replace('Home') }
       ]);
     } catch (error: any) {
       Alert.alert('预约失败', error.message);

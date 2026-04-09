@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, TouchableOpacity, Switch } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter } from '@react-navigation/native';
 import { Screen } from '@/components/Screen';
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
@@ -46,7 +46,7 @@ export default function AdminSettingsScreen() {
       });
       Alert.alert('保存成功');
       if (isFirstLogin) {
-        router.replace('/admin');
+        router.replace('Admin');
       }
     } catch (error) {
       Alert.alert('保存失败');

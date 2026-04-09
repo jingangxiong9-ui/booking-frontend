@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter } from '@react-navigation/native';
 import { Screen } from '@/components/Screen';
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
@@ -16,9 +16,9 @@ export default function AdminLoginScreen() {
   useEffect(() => {
     if (isAuthenticated) {
       if (isFirstLogin) {
-        router.replace('/admin/settings');
+        router.replace('AdminSettings');
       } else {
-        router.replace('/admin');
+        router.replace('Admin');
       }
     }
   }, [isAuthenticated, isFirstLogin]);

@@ -43,7 +43,7 @@ export default function HomeScreen() {
         <View style={styles.menu}>
           <TouchableOpacity 
             style={styles.menuItem} 
-            onPress={() => router.push('/book')}
+            onPress={() => router.push('Book')}
           >
             <View style={[styles.menuIcon, { backgroundColor: '#EEF2FF' }]}>
               <Text style={styles.menuEmoji}>📅</Text>
@@ -54,7 +54,7 @@ export default function HomeScreen() {
 
           <TouchableOpacity 
             style={styles.menuItem}
-            onPress={() => router.push('/query')}
+            onPress={() => router.push('Query')}
           >
             <View style={[styles.menuIcon, { backgroundColor: '#FEF3C7' }]}>
               <Text style={styles.menuEmoji}>🔍</Text>
@@ -66,7 +66,7 @@ export default function HomeScreen() {
 
         <TouchableOpacity 
           style={styles.adminButton}
-          onPress={() => router.push('/admin')}
+          onPress={() => router.push('AdminLogin')}
         >
           <Text style={styles.adminButtonText}>管理入口</Text>
         </TouchableOpacity>

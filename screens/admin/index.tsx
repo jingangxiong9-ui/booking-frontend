@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert, RefreshControl } from 'react-native';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 import { Screen } from '@/components/Screen';
 import { Button } from '@/components/Button';
 import { useAuth } from '@/contexts/AuthContext';
@@ -84,7 +84,7 @@ export default function AdminScreen() {
         <View style={styles.header}>
           <Text style={styles.headerTitle}>管理后台</Text>
           <View style={styles.headerActions}>
-            <TouchableOpacity onPress={() => router.push('/admin/settings')}>
+            <TouchableOpacity onPress={() => router.push('AdminSettings')}>
               <Text style={styles.headerButton}>设置</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={logout}>

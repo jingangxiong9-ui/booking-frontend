@@ -1,19 +1,16 @@
-import { useRouter as useExpoRouter, useLocalSearchParams, Stack, useSegments, useRootNavigationState } from 'expo-router';
-import { useEffect, useCallback } from 'react';
+import { useRouter, useLocalSearchParams as useRNLocalSearchParams } from '@react-navigation/native';
+import { useCallback } from 'react';
 
 export function useSafeRouter() {
-  const router = useExpoRouter();
-  const segments = useSegments();
-  const rootState = useRootNavigationState();
+  const router = useRouter();
 
   const navigate = useCallback((path: string, params?: Record<string, any>) => {
+    // React Navigation 使用 name 而不是 path
+    // 路由名称与 App.tsx 中定义的一致
     if (params) {
-      const queryString = Object.entries(params)
-        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
-        .join('&');
-      router.push(`${path}?${queryString}`);
+      router.navigate({ pathName: path, params });
     } else {
-      router.push(path);
+      router.navigate(path);
     }
   }, [router]);
 
@@ -26,8 +23,11 @@ export function useSafeRouter() {
 }
 
 export function useSafeSearchParams<T extends Record<string, any>>() {
-  const params = useLocalSearchParams();
-  return params as T;
+  const params = useRNLocalSearchParams<T>();
+  return params;
 }
 
-export { Stack };
+// Re-export Stack for compatibility
+export const Stack = {
+  Screen: () => null,
+};
