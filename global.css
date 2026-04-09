@@ -1,32 +1,41 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --color-primary: #4F46E5;
-  --color-primary-light: #818CF8;
-  --color-background: #F3F4F6;
-  --color-surface: #FFFFFF;
-  --color-text: #111827;
-  --color-muted: #6B7280;
-  --color-border: #E5E7EB;
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-}
-
+/* Base styles for the app */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body, #root {
+html,
+body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-color: var(--color-background);
-  color: var(--color-text);
+#root {
+  height: 100%;
+}
+
+/* Light mode colors */
+:root {
+  --background: #fafafa;
+  --foreground: #171717;
+  --surface: #ffffff;
+  --muted: #737373;
+  --accent: #0a84ff;
+  --border: #e5e5e5;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --surface: #1a1a1a;
+    --muted: #a3a3a3;
+    --accent: #0a84ff;
+    --border: #333333;
+  }
 }
