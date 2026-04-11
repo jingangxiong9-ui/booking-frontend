@@ -3,7 +3,8 @@
   "outputDirectory": "dist",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "routes": [
+    { "handle": "filesystem", "src": "/.(.*)" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
