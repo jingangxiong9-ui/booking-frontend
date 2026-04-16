@@ -1,55 +1,81 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
+import * as SplashScreen from 'expo-splash-screen';
+
+// Screens
+import HomeScreen from '@/screens/home';
+import BookScreen from '@/screens/book';
+import QueryScreen from '@/screens/query';
+import AdminLoginScreen from '@/screens/admin/login';
+import AdminIndexScreen from '@/screens/admin';
+import AdminSettingsScreen from '@/screens/admin/settings';
+
+const Stack = createStackNavigator();
+
+// 保持 SplashScreen 可见直到准备就绪
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // 简单延迟确保加载完成
-    const timer = setTimeout(() => {
+    async function prepare() {
+      // 预加载字体、进行其他异步准备
+      await new Promise(resolve => setTimeout(resolve, 500));
       setIsReady(true);
-    }, 500);
-    return () => clearTimeout(timer);
+      await SplashScreen.hideAsync();
+    }
+    prepare();
   }, []);
 
   if (!isReady) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return null;
   }
 
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <StatusBar style="auto" />
-      <Text style={styles.title}>预约挂号系统</Text>
-      <Text style={styles.subtitle}>Web Version</Text>
-      <Text style={styles.text}>前端部署成功！</Text>
-    </View>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: { backgroundColor: '#fff' },
+          headerTintColor: '#333',
+          headerTitleStyle: { fontWeight: '600' },
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: '预约挂号系统', headerShown: false }}
+        />
+        <Stack.Screen
+          name="Book"
+          component={BookScreen}
+          options={{ title: '预约挂号' }}
+        />
+        <Stack.Screen
+          name="Query"
+          component={QueryScreen}
+          options={{ title: '预约查询' }}
+        />
+        <Stack.Screen
+          name="AdminLogin"
+          component={AdminLoginScreen}
+          options={{ title: '医生登录' }}
+        />
+        <Stack.Screen
+          name="Admin"
+          component={AdminIndexScreen}
+          options={{ title: '管理后台' }}
+        />
+        <Stack.Screen
+          name="AdminSettings"
+          component={AdminSettingsScreen}
+          options={{ title: '设置' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 20,
-  },
-  text: {
-    fontSize: 14,
-    color: '#4F46E5',
-  },
-});
