@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -12,7 +12,7 @@ import AdminLoginScreen from '@/screens/admin/login';
 import AdminIndexScreen from '@/screens/admin';
 import AdminSettingsScreen from '@/screens/admin/settings';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 // 保持 SplashScreen 可见直到准备就绪
 SplashScreen.preventAutoHideAsync();
